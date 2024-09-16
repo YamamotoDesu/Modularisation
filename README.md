@@ -107,3 +107,52 @@ final class RootCoordinator {
     }
 }
 ```
+
+## Why Use the Coordinator Pattern?
+Understanding the benefits of the Coordinator pattern can be challenging, especially when comparing it to a Singleton in simple cases. Singleton works well for small-scale apps, but as your app grows in complexity, the advantages of using the Coordinator pattern become clearer. Below are some of the key benefits of adopting the Coordinator pattern.
+
+### 1. Separation of Navigation Logic
+In a Singleton setup, UIViewController often handles its own navigation logic, but with the Coordinator pattern, all navigation responsibilities are delegated to a dedicated object. This means that each UIViewController can focus solely on its own presentation and data logic, while the Coordinator handles transitions, resulting in simpler and more understandable code.
+
+Example:
+Singleton: Each screen handles pushViewController or present.
+Coordinator: The Coordinator manages all transitions, so views don’t need to know about navigation details.
+
+### 2. Improved Testability
+By isolating navigation logic within the Coordinator, it becomes much easier to test individual view controllers. If navigation is tightly coupled with the view controller, testing becomes cumbersome. Coordinators allow you to test views independently from navigation logic, making your codebase more maintainable and testable.
+
+Example:
+Singleton: Navigation logic is embedded within the UIViewController, making navigation tests more difficult.
+Coordinator: Since navigation is handled externally, view logic can be tested in isolation.
+
+### 3. Reusability of Modules
+Coordinators are created per screen or feature flow, making it easy to reuse specific screens or features in other projects. With Singleton, global services and state management can make it difficult to separate and reuse modules because of their tightly coupled dependencies.
+
+Example:
+Singleton: Views are tightly bound to global state, making reuse difficult.
+Coordinator: Each screen or flow is self-contained and easy to repurpose in other apps or modules.
+
+### 4. Flexible Dependency Injection
+Coordinators allow dependencies to be injected into each screen or feature, making it easy to swap out services, especially for testing. In contrast, Singleton enforces shared instances of services across the app, making it harder to replace them with mock objects during testing.
+
+Example:
+Singleton: All screens use the same global service instance.
+Coordinator: Different dependencies can be injected per screen, allowing flexible testing with mocks.
+
+### 5. Clearer Responsibility
+With Coordinators, each view controller is only responsible for its own UI and user interaction, while navigation and flow management are handled by the Coordinator. This results in cleaner, more maintainable code where responsibilities are clearly separated.
+
+Example:
+Singleton: View controllers manage both UI logic and navigation, leading to overburdened components.
+Coordinator: View controllers handle only UI, while Coordinators manage navigation and feature flows.
+
+### 6. Scalability of Flows
+Coordinators are ideal for managing complex flows, such as user authentication or purchase flows, where multiple screens need to work together in a cohesive manner. It’s easier to add new screens or modify flow behavior without affecting the rest of the app.
+
+Example:
+Singleton: Adding new flows might require modifying existing code, risking regressions.
+Coordinator: New flows can be added with minimal impact on other parts of the app, promoting scalability.
+
+### Summary
+While Singleton may be sufficient for small apps, as your app grows, Coordinators provide significant advantages in managing dependencies, separating navigation logic, improving testability, and increasing scalability. The Coordinator pattern promotes cleaner, more modular, and maintainable code, making it an excellent choice for large-scale, complex apps.
+
