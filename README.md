@@ -21,3 +21,14 @@ But the problem with this approach is, now SingletonManager needs to know about 
 But the DependencyContainer we build here has no idea about the dependencies, their interfaces or implementation details. It is a very lightweight container with no package dependencies. So all our module packages can easily import it and interact with it. The container only knows about foundational types of ObjectIdentifier, Any and AnyObject.
 
 Additionally, with a singleton manager that exposes everything, any module accessing it will have access to all dependencies, even the ones it doesn't need. But with dependency container's we can have a better control. Because the module can only access to a dependency that it knows about, via its interface protocol.
+
+Sum up
+| Aspect              | Singleton Manager                         | Coordinator                                              |
+|---------------------|-------------------------------------------|----------------------------------------------------------|
+| Coupling            | Tight coupling to global state            | Loose coupling, modularized by feature                    |
+| State Management    | Global, shared state across the app        | Localized, scoped to specific flows/features              |
+| Dependency Handling | Centralized, harder to replace for testing | Localized, easy to mock or replace                        |
+| Navigation          | Not suitable for managing navigation flows | Handles view creation and navigation easily               |
+| Testability         | Harder to test in isolation                | Easier to test navigation and logic                       |
+| Flexibility         | Less flexible, requires changes in many places | High flexibility and scalability                       |
+
