@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  ModularisationStarter
+
+  Created by Emre Havan on 14.02.24.
+  
+*/
+
+// TabBar
+"ms_tabbar_home_title" = "Home";
+
+// Home
+"ms_home_title" = "Songs";
+
+// Song Details
+"ms_song_details_lyrics" = "Lyrics";
+"ms_song_details_artist_info" = "Artist Info";
+"ms_song_details_go_to_artist_cta" = "Go to Artist Page";
+
+// Artist Details
+"ms_artist_details_birth_date" = "Birth Date";
+"ms_artist_details_songs_header" = "Songs";

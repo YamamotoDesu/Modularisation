@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "E5C19BA3-C9FD-408A-B595-43D2E597799F",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:ModularisationStarter.xcodeproj",
+      "identifier" : "FBA9D05A2B7B936A00FDF616",
+      "name" : "ModularisationStarter"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:ModularisationStarter.xcodeproj",
+        "identifier" : "FBA9D0A22B7CD3B100FDF616",
+        "name" : "ModularisationStarterTests"
+      }
+    }
+  ],
+  "version" : 1
+}
