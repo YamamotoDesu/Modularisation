@@ -114,9 +114,9 @@ Understanding the benefits of the Coordinator pattern can be challenging, especi
 ### 1. Separation of Navigation Logic
 In a Singleton setup, UIViewController often handles its own navigation logic, but with the Coordinator pattern, all navigation responsibilities are delegated to a dedicated object. This means that each UIViewController can focus solely on its own presentation and data logic, while the Coordinator handles transitions, resulting in simpler and more understandable code.
 
-Example:
-Singleton: Each screen handles pushViewController or present.
-Coordinator: The Coordinator manages all transitions, so views don’t need to know about navigation details.
+- Example:
+  - Singleton: Each screen handles pushViewController or present.
+  - Coordinator: The Coordinator manages all transitions, so views don’t need to know about navigation details.
 
 ### 2. Improved Testability
 By isolating navigation logic within the Coordinator, it becomes much easier to test individual view controllers. If navigation is tightly coupled with the view controller, testing becomes cumbersome. Coordinators allow you to test views independently from navigation logic, making your codebase more maintainable and testable.
