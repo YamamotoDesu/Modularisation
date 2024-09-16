@@ -22,7 +22,7 @@ But the DependencyContainer we build here has no idea about the dependencies, th
 
 Additionally, with a singleton manager that exposes everything, any module accessing it will have access to all dependencies, even the ones it doesn't need. But with dependency container's we can have a better control. Because the module can only access to a dependency that it knows about, via its interface protocol.
 
-Sum up
+My research:
 | Aspect              | Singleton Manager                         | Coordinator                                              |
 |---------------------|-------------------------------------------|----------------------------------------------------------|
 | Coupling            | Tight coupling to global state            | Loose coupling, modularized by feature                    |
