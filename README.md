@@ -32,3 +32,78 @@ My research:
 | Testability         | Harder to test in isolation                | Easier to test navigation and logic                       |
 | Flexibility         | Less flexible, requires changes in many places | High flexibility and scalability                       |
 
+### Singleton Manager 
+
+```swift
+final class SingletonManager {
+    static let shared = SingletonManager()
+    
+    // Global services
+    let homeService: HomeService
+    let analyticsTracker: AnalyticsEventTracker
+
+    private init() {
+        self.homeService = HomeService() // Singleton holds direct reference
+        self.analyticsTracker = AnalyticsEventTracker.shared
+    }
+
+    // Accessing shared instance
+    func getHomeService() -> HomeService {
+        return homeService
+    }
+
+    func getAnalyticsTracker() -> AnalyticsEventTracker {
+        return analyticsTracker
+    }
+}
+
+class HomeViewController: UIViewController {
+    let homeService = SingletonManager.shared.getHomeService()
+    let analyticsTracker = SingletonManager.shared.getAnalyticsTracker()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Use services directly
+        homeService.fetchHomeData()
+        analyticsTracker.trackEvent("HomeViewOpened")
+    }
+}
+```
+
+## Coordinator Pattern
+```swift
+final class HomeCoordinator {
+    private let navigationController: UINavigationController
+
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+
+    func start() {
+        // Setup Home View with a ViewModel and push it to the Navigation stack
+        let viewModel = HomeViewModel(homeService: HomeService(), analyticsTracker: AnalyticsEventTracker.shared)
+        let homeView = HomeView(viewModel: viewModel)
+        let hostingVC = UIHostingController(rootView: homeView)
+        navigationController.setViewControllers([hostingVC], animated: false)
+    }
+
+    func pushSongDetail(_ song: Song) {
+        let coordinator = SongDetailsCoordinator(navigationController: navigationController)
+        let songDetailVC = coordinator.makeViewController(with: song)
+        navigationController.pushViewController(songDetailVC, animated: true)
+    }
+}
+
+final class RootCoordinator {
+    private let navigationController = UINavigationController()
+
+    func start() -> UIViewController {
+        let homeCoordinator = HomeCoordinator(navigationController: navigationController)
+        homeCoordinator.start()
+        
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [navigationController]
+        return tabBarController
+    }
+}
+```
