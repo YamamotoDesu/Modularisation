@@ -123,7 +123,7 @@ By isolating navigation logic within the Coordinator, it becomes much easier to 
 
 - Example:
   - Singleton: Navigation logic is embedded within the UIViewController, making navigation tests more difficult.
--  Coordinator: Since navigation is handled externally, view logic can be tested in isolation.
+  -  Coordinator: Since navigation is handled externally, view logic can be tested in isolation.
 
 ### 3. Reusability of Modules
 Coordinators are created per screen or feature flow, making it easy to reuse specific screens or features in other projects. With Singleton, global services and state management can make it difficult to separate and reuse modules because of their tightly coupled dependencies.
